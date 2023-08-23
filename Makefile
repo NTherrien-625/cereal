@@ -11,3 +11,6 @@ clean:
 	rm -f *.o
 	rm -f driver
 
+open:
+	vim -o cereal.h -o2 cereal.c
+
