@@ -21,6 +21,13 @@ void write_int(int i, char* buf) {
 	return;
 }
 
+void write_unsigned_int(unsigned int ui, char* buf) {
+	for (int it = 0; it < UNSIGNED_INT_SIZE; ++it) {
+		buf[it] = ((char*)(&ui))[it];
+	}
+	return;
+}
+
 void write_float(float f, char* buf) {
 	for (int it = 0; it < FLOAT_SIZE; ++it) {
 		buf[it] = ((char*)(&f))[it];
@@ -54,6 +61,14 @@ unsigned char read_unsigned_char(char* buf) {
 int read_int(char* buf) {
 	int ret;
 	for (int it = 0; it < INT_SIZE; ++it) {
+		((char*)(&ret))[it] = buf[it];
+	}
+	return ret;
+}
+
+unsigned int read_unsigned_int(char* buf) {
+	unsigned int ret;
+	for (int it = 0; it < UNSIGNED_INT_SIZE; ++it) {
 		((char*)(&ret))[it] = buf[it];
 	}
 	return ret;
