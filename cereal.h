@@ -15,3 +15,14 @@ void write_int(int i, char* buf);
 void write_float(float f, char* buf);
 
 void write_double(double d, char* buf);
+
+char read_char(char* buf);
+
+int read_int(char* buf);
+
+float read_float(char* buf);
+
+double read_double(char* buf);
+
+#endif
+
