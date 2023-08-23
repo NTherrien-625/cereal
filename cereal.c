@@ -7,6 +7,13 @@ void write_char(char c, char* buf) {
 	return;
 }
 
+void write_unsigned_char(unsigned char uc, char* buf) {
+	for (int it = 0; it < UNSIGNED_CHAR_SIZE; ++it) {
+		buf[it] = ((char*)(&uc))[it];
+	}
+	return;
+}
+
 void write_int(int i, char* buf) {
 	for (int it = 0; it < INT_SIZE; ++it) {
 		buf[it] = ((char*)(&i))[it];
@@ -31,6 +38,14 @@ void write_double(double d, char* buf) {
 char read_char(char* buf) {
 	char ret;
 	for (int it = 0; it < CHAR_SIZE; ++it) {
+		((char*)(&ret))[it] = buf[it];
+	}
+	return ret;
+}
+
+unsigned char read_unsigned_char(char* buf) {
+	unsigned char ret;
+	for (int it = 0; it < UNSIGNED_CHAR_SIZE; ++it) {
 		((char*)(&ret))[it] = buf[it];
 	}
 	return ret;

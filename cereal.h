@@ -27,6 +27,11 @@ The size of char, determined at compiled time to handle different implementation
 static int CHAR_SIZE = sizeof(char);
 
 /**
+The size of char, determined at compiled time to handle different implementations.
+*/
+static int UNSIGNED_CHAR_SIZE = sizeof(unsigned char);
+
+/**
 The size of int, determined at compiled time to handle different implementations.
 */
 static int INT_SIZE = sizeof(int);
@@ -53,6 +58,11 @@ Writes a character to string buffer.
 void write_char(char c, char* buf);
 
 /**
+Writes a character to string buffer.
+*/
+void write_unsigned_char(unsigned char uc, char* buf);
+
+/**
 Writes an int to string buffer.
 */
 void write_int(int i, char* buf);
@@ -77,6 +87,11 @@ void write_double(double d, char* buf);
 Reads a character from the string buffer.
 */
 char read_char(char* buf);
+
+/**
+Reads a character from the string buffer.
+*/
+unsigned char read_unsigned_char(char* buf);
 
 /**
 Reads an int from the string buffer.
