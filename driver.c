@@ -11,7 +11,8 @@ typedef struct {
 	unsigned char f_4;
 	unsigned int  f_5;
 
-	short f_6;
+	short          f_6;
+	unsigned short f_7;
 } Test;
 
 void write_Test(Test t, char* buf) {
@@ -36,6 +37,9 @@ void write_Test(Test t, char* buf) {
 	offset += UNSIGNED_INT_SIZE;
 
 	write_short(t.f_6, buf+offset);
+	offset += SHORT_SIZE;
+
+	write_unsigned_short(t.f_7, buf+offset);
 
 	return;
 }
@@ -63,6 +67,9 @@ Test read_Test(char* buf) {
 	offset += UNSIGNED_INT_SIZE;
 	
 	t.f_6 = read_short(buf+offset);
+	offset += SHORT_SIZE;
+
+	t.f_7 = read_unsigned_short(buf+offset);
 	
 	return t;
 }
@@ -76,8 +83,9 @@ int main(int argc, char** argv) {
 	t1.f_4 = 127;
 	t1.f_5 = 2147483647;
 	t1.f_6 = -32678;
+	t1.f_7 = 65535;
 
-	fprintf(stdout, "Original struct : (%d, %d, %f, %f, %u, %u, %d)\n", t1.f_0, t1.f_1, t1.f_2, t1.f_3, t1.f_4, t1.f_5, t1.f_6);
+	fprintf(stdout, "Original struct : (%d, %d, %f, %f, %u, %u, %d, %u)\n", t1.f_0, t1.f_1, t1.f_2, t1.f_3, t1.f_4, t1.f_5, t1.f_6, t1.f_7);
 	
 	char* buf = (char*) malloc( sizeof(Test) );
 	write_Test(t1, buf);
@@ -85,7 +93,7 @@ int main(int argc, char** argv) {
 	fprintf(stdout, "Cerealized struct : %s\n", buf);
 
 	Test t2 = read_Test(buf);
-	fprintf(stdout, "De-Cerialized struct : (%d, %d, %f, %f, %u, %u, %d)\n", t2.f_0, t2.f_1, t2.f_2, t2.f_3, t2.f_4, t2.f_5, t2.f_6);
+	fprintf(stdout, "De-Cerialized struct : (%d, %d, %f, %f, %u, %u, %d, %u)\n", t2.f_0, t2.f_1, t2.f_2, t2.f_3, t2.f_4, t2.f_5, t2.f_6, t2.f_7);
 
 	free(buf);
 

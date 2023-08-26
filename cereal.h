@@ -37,6 +37,11 @@ The size of short, determined at compile time to handle different implementation
 static int SHORT_SIZE = sizeof(short);
 
 /**
+The size of unsigned short, determined at compile time to handle different implementations (low chance but never 0).
+*/
+static int UNSIGNED_SHORT_SIZE = sizeof(unsigned short);
+
+/**
 The size of int, determined at compiled time to handle different implementations.
 */
 static int INT_SIZE = sizeof(int);
@@ -78,6 +83,11 @@ Writes a short to the provided string buffer.
 void write_short(short s, char* buf);
 
 /**
+Writes an unsigned short to the provided string buffer.
+*/
+void write_unsigned_short(unsigned short us, char* buf);
+
+/**
 Writes an int to string buffer.
 */
 void write_int(int i, char* buf);
@@ -117,6 +127,11 @@ unsigned char read_unsigned_char(char* buf);
 Reads a short from the string buffer.
 */
 short read_short(char* buf);
+
+/**
+Reads an unsigned short from a string buffer.
+*/
+unsigned short read_unsigned_short(char* buf);
 
 /**
 Reads an int from the string buffer.

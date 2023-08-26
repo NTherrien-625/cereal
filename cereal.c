@@ -21,6 +21,13 @@ void write_short(short s, char* buf) {
 	return;
 }
 
+void write_unsigned_short(unsigned short us, char* buf) {
+	for (int it = 0; it < UNSIGNED_SHORT_SIZE; ++it) {
+		buf[it] = ((char*)(&us))[it];
+	}
+	return;
+}
+
 void write_int(int i, char* buf) {
 	for (int it = 0; it < INT_SIZE; ++it) {
 		buf[it] = ((char*)(&i))[it];
@@ -68,6 +75,14 @@ unsigned char read_unsigned_char(char* buf) {
 short read_short(char* buf) {
 	short ret;
 	for (int it = 0; it < SHORT_SIZE; ++it) {
+		((char*)(&ret))[it] = buf[it];
+	}
+	return ret;
+}
+
+unsigned short read_unsigned_short(char* buf) {
+	unsigned short ret;
+	for (int it = 0; it < UNSIGNED_SHORT_SIZE; ++it) {
 		((char*)(&ret))[it] = buf[it];
 	}
 	return ret;
